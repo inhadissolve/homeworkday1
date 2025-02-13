@@ -1,7 +1,5 @@
-from tkinter.font import names
-
-print("Hello Python~")  # alt+shift+F10
+print("Hello Python~")
 
 name = 1
-
 print(name)
+
