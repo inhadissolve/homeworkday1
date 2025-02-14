@@ -1,37 +1,20 @@
-import random
-drinks_foods = {"위스키": "초콜릿", "와인": "치즈", "소주": "삽겹살", "고량주": "양꼬치"}
-# print(drinks_foods)
-# print(drinks_foods.pop("고량주"))
-# print(drinks_foods)
+# v3.9
+def log_decorator(func):
+    def wrapper(*args, **kwargs):
+        print(f'Function Name : {func.__name__}')
+        print(f'Function Arguments : {args}')
+        print(f'Function Keyword Arguments : {kwargs}')
+        result = func(*args, **kwargs)
+        return result
+    return wrapper
 
-#del drinks_foods["위스키"]
-#drinks_foods["사케"] = "광어회"
-japan_drinks_foods = {"사케": "광어회", "위스키": "낙곱새"}
-drinks_foods.update(japan_drinks_foods)
 
-#drink = input(drinks_foods.keys())
-drinks_foods_keys = list(drinks_foods)
-# print(drinks_foods_keys)
-# #print(drinks_foods_keys.pop(0))
-# print(drinks_foods_keys.remove("위스키"))
-# print(drinks_foods_keys)
-#print(random.choice(drinks_foods_keys))
+@log_decorator
+def greet(name, greeting="안녕하세요", age=None):
+    return f"{greeting}, {name}(age: {age})" if age else f"{greeting}, {name}"
 
-while True:
-    menu = input(f'다음 술중에 고르세요.\n1) {drinks_foods_keys[0]}   2) {drinks_foods_keys[1]}   3) {drinks_foods_keys[2]}   4) {drinks_foods_keys[3]}   5) {drinks_foods_keys[4]}   6) 아무거나   7) 종료 : ')
-    if menu == '1':
-        print(f'{drinks_foods_keys[0]}에 어울리는 안주는 {drinks_foods[drinks_foods_keys[0]]} 입니다')
-    elif menu == '2':
-        print(f'{drinks_foods_keys[1]}에 어울리는 안주는 {drinks_foods[drinks_foods_keys[1]]} 입니다')
-    elif menu == '3':
-        print(f'{drinks_foods_keys[2]}에 어울리는 안주는 {drinks_foods[drinks_foods_keys[2]]} 입니다')
-    elif menu == '4':
-        print(f'{drinks_foods_keys[3]}에 어울리는 안주는 {drinks_foods[drinks_foods_keys[3]]} 입니다')
-    elif menu == '5':
-        print(f'{drinks_foods_keys[4]}에 어울리는 안주는 {drinks_foods[drinks_foods_keys[4]]} 입니다')
-    elif menu == '6':
-        random_drink = random.choice(drinks_foods_keys)
-        print(f'{random_drink}에 어울리는 안주는 {drinks_foods[random_drink]} 입니다')
-    elif menu == '7':
-        print(f'다음에 또 오세요')
-        break
+print(greet("인하"))
+print(greet("인상", "안녕"))
+#print(greet("James", "Hello"))
+print(greet("Gonzales", greeting="Hola"))
+print(greet("Nakamura", greeting="Gonniziwa", age=29))
